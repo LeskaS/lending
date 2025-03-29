@@ -1,6 +1,6 @@
+using lending_skills_backend.Models;
+using lending_skills_backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using YourProject.Models;
-using YourProject.Repositories;
 
 namespace YourProject.Controllers
 {
@@ -8,32 +8,32 @@ namespace YourProject.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserRepository _userRepository;
+        private readonly UsersRepository _userRepository;
 
-        public UserController(UserRepository userRepository)
+        public UserController(UsersRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<DbUser>>> GetUsers()
         {
             return Ok(await _userRepository.GetUsersAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<DbUser>> GetUser(int id)
         {
             var user = await _userRepository.GetUserByIdAsync(id);
             if (user == null) return NotFound();
             return Ok(user);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> CreateUser(User user)
-        {
-            await _userRepository.AddUserAsync(user);
-            return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
-        }
+        //[HttpPost]
+        //public async Task<ActionResult> CreateUser(DbUser user)
+        //{
+        //    await _userRepository.AddUserAsync(user);
+        //    return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+        //}
     }
 }

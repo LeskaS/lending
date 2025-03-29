@@ -1,6 +1,5 @@
 
 using lending_skills_backend.DataAccess;
-using YourProject.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
