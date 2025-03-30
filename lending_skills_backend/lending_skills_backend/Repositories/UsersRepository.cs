@@ -37,16 +37,14 @@ public class UsersRepository
         await _context.SaveChangesAsync();
     }
 
-
-    public async Task<bool> ChangeUserStatusAsync(int userId, string newStatus)
+    public async Task<bool> SwitchActiveStatusAsync(Guid userId, bool isActive)
     {
         var user = await _context.Users.FindAsync(userId);
         if (user == null) return false;
 
-        user.Status = newStatus;
+        user.Status = isActive ? "Active" : "Inactive"; 
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
         return true;
-
     }
 }

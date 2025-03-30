@@ -18,15 +18,15 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<DbUser> Users { get; set; }
-    //public DbSet<DbProgram> Programs { get; set; }
+    public DbSet<DbProgram> Programs { get; set; }
     //public DbSet<DbReview> Reviews { get; set; }
     //public DbSet<DbProfessor> Professors { get; set; }
     public DbSet<DbWork> Works { get; set; }
     public DbSet<DbLike> Likes { get; set; }
-    //public DbSet<DbPage> Pages { get; set; }
-    //public DbSet<DbBlock> Blocks { get; set; }
-    //public DbSet<DbForm> Forms { get; set; }
-    //public DbSet<DbToken> Tokens { get; set; }
+    public DbSet<DbPage> Pages { get; set; }
+    public DbSet<DbBlock> Blocks { get; set; }
+    public DbSet<DbForm> Forms { get; set; }
+    public DbSet<DbToken> Tokens { get; set; }
 
 
 

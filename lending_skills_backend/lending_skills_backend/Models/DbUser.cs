@@ -40,13 +40,13 @@ public class DbUserConfiguration : IEntityTypeConfiguration<DbUser>
             .HasKey(u => u.Id);
 
         //builder
-        //    .HasMany(u => u.Works)
-        //    .WithOne(w => w.User)
+        //    .HasMany(u => u.Works) // идем от таблицы works где связь hasMany
+        //    .WithOne(w => w.User) // приходим в withone в таблице user
         //    .OnDelete(DeleteBehavior.NoAction);
 
         builder
           .HasMany(u => u.Likes)
-          .WithOne(w => w.User)
+          .WithOne(l => l.User)
           .OnDelete(DeleteBehavior.NoAction);
     }
 }

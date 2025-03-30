@@ -1,6 +1,23 @@
-﻿namespace lending_skills_backend.Repositories
+﻿using lending_skills_backend.DataAccess;
+using lending_skills_backend.Models;
+
+public class ReviewsRepository
 {
-    public class ReviewsRepository
+    private readonly ApplicationDbContext _context;
+
+    public ReviewsRepository(ApplicationDbContext context)
     {
+        _context = context;
+    }
+
+    public async Task<IEnumerable<DbReview>> GetReviewsAsync()
+    {
+        return await _context.Reviews.ToListAsync();
+    }
+
+    public async Task AddReviewAsync(DbReview review)
+    {
+        _context.Reviews.Add(review);
+        await _context.SaveChangesAsync();
     }
 }
